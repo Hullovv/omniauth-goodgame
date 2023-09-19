@@ -1,3 +1,1 @@
-# frozen_string_literal: true
-
-require_relative "goodgame/version"
+require 'omniauth/goodgame'

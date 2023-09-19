@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require_relative "lib/omniauth/goodgame/version"
 
 Gem::Specification.new do |spec|
@@ -15,10 +16,8 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files = `git ls-files`.split("\n")
-  spec.executables = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
+  spec.files         = `git ls-files`.split($/)
   spec.require_paths = ["lib"]
-
   spec.add_runtime_dependency "omniauth-oauth2", "~> 1.6"
 
   # Uncomment to register a new dependency of your gem

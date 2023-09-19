@@ -2,7 +2,7 @@ require "omniauth-oauth2"
 
 module OmniAuth
   module Strategies
-    class GoodGame < OmniAuth::Strategies::OAuth2
+    class Goodgame < OmniAuth::Strategies::OAuth2
       DEFAULT_SCOPE = ""
       option :name, "goodgame"
 
