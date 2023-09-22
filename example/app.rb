@@ -10,7 +10,7 @@ configure do
 end
 
 use OmniAuth::Builder do
-  provider :goodgame, ENV["GOODGAME_CLIENT_ID"], ENV["GOODGAME_CLIENT_SECRET"],
+  provider :goodgame, ENV.fetch("GOODGAME_CLIENT_ID", nil), ENV.fetch("GOODGAME_CLIENT_SECRET", nil),
            display: "popup",
            redirect_uri: "http://127.0.0.1:3000/auth/goodgame/callback"
 end

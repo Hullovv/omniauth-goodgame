@@ -39,7 +39,7 @@ module OmniAuth
           name: raw_info['username'],
           nickname: raw_info['nickname'],
           email: raw_info['email'],
-          channel_id: raw_info['stream']['id'] 
+          channelid: raw_info['stream']['id'] 
         }
       end
 
@@ -86,4 +86,3 @@ module OmniAuth
     end
   end
 end
-
