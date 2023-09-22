@@ -6,7 +6,7 @@ module OmniAuth
       DEFAULT_SCOPE = ''
 
       option :name, 'goodgame'
-      option :authorize_options, %i[scope display redirect_uri]
+      option :authorize_options, [:scope]
       option :client_options, {
         site: 'https://goodgame.ru',
         authorize_url: '/oauth2/authorize',
@@ -37,9 +37,9 @@ module OmniAuth
       info do
         {
           name: raw_info['username'],
-          nickname: raw_info['nickname'],
           email: raw_info['email'],
-          channel_id: raw_info['stream']['id'] 
+          nickname: raw_info['nickname'],
+          streamid: raw_info['stream']['id']
         }
       end
 
@@ -86,4 +86,3 @@ module OmniAuth
     end
   end
 end
-

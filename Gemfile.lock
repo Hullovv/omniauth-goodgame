@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omniauth-goodgame (0.0.4)
+    omniauth-goodgame (0.0.6)
       omniauth-oauth2 (~> 1.6)
 
 GEM

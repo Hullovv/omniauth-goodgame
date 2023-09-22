@@ -1,15 +1,10 @@
-# Omniauth::Goodgame
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/omniauth/goodgame`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this lines to your application's Gemfile:
 
 ```ruby
 gem 'omniauth-goodgame'
+gem 'omniauth-rails_csrf_protection'
 ```
 
 And then execute:
@@ -22,22 +17,94 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Here is an example for adding the middleware to a Rails app in `config/initializers/omniauth.rb`:
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :twitch, ENV["GOODGAME_CLIENT_ID"], ENV["GOODGAME_CLIENT_SECRET"]
+end
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/omniauth-goodgame. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/omniauth-goodgame/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/Alex1324522/omniauth-goodgame. This project is intended to be a safe, welcoming space for collaboration.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-## Code of Conduct
-
-Everyone interacting in the Omniauth::Goodgame project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/omniauth-goodgame/blob/master/CODE_OF_CONDUCT.md).
+## Example
+Here is an example of an Auth hash that is located in `request.env['omniauth.auth']`:
+```ruby
+{"provider"=>"goodgame",
+ "uid"=>uid,
+ "info"=>
+  {"name"=>"name",
+   "nickname"=>"nickname",
+   "email"=>"your@email",
+   "channelid"=>channelid},
+ "credentials"=>
+  {"token"=>
+    "token",
+   "refresh_token"=>
+    "refresh_token",
+   "expires_at"=>1695420157,
+   "expires"=>true},
+ "extra"=>
+  {"raw_info"=>
+    {"id"=>id,
+     "obj_key"=>"obj_key",
+     "nickname"=>"nickname",
+     "username"=>"username",
+     "avatar"=>"/files/avatars/av_avatar_elf.png",
+     "firstname"=>"firstname",
+     "lastname"=>"lastname",
+     "fullname"=>"fullname",
+     "birthday"=>nil,
+     "regdate"=>"regdate",
+     "country"=>{"id"=>"id", "code"=>"code", "title"=>"Country"},
+     "city"=>{"id"=>"0", "title"=>nil},
+     "sex"=>0,
+     "website"=>"",
+     "about"=>"",
+     "background"=>"/images/profile/smile_pattern.png",
+     "timezone"=>{"id"=>0, "zone"=>false},
+     "activated"=>1,
+     "stream"=>
+      {"id"=>id,
+       "key"=>"key",
+       "preview"=>"https://goodgame.ru/files/logotypes/ch_204504_N2ai.png",
+       "title"=>"title",
+       "viewers"=>0,
+       "streamer"=>
+        {"id"=>id,
+         "obj_key"=>"obj_key",
+         "nickname"=>"nickname",
+         "username"=>"username",
+         "avatar"=>"/files/avatars/av_avatar_elf.png"},
+       "stream_key"=>"stream_key",
+       "status"=>0,
+       "game"=>{"id"=>0, "title"=>nil, "url"=>"/games/"},
+       "poster"=>"poster_link",
+       "hidden"=>true,
+       "adult"=>true,
+       "link"=>"https://goodgame.ru/channel/your_channel/",
+       "watch_together"=>false,
+       "lastseen"=>lastseen,
+       "premiums"=>premiums,
+       "followers"=>followers,
+       "rating"=>{"value"=>value, "place"=>place}},
+     "room"=>
+      {"user_id"=>User_id,
+       "style"=>0,
+       "walls"=>
+        ["/files/pics.png"],
+       "exp"=>600,
+       "level"=>4,
+       "snapshot"=>"",
+       "items"=>nil},
+     "bnet"=>false,
+     "rights"=>0,
+     "email"=>"your@email",
+     "phone"=>0}}}
+```
