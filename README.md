@@ -21,7 +21,7 @@ Here is an example for adding the middleware to a Rails app in `config/initializ
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twitch, ENV["GOODGAME_CLIENT_ID"], ENV["GOODGAME_CLIENT_SECRET"]
+  provider :goodgame, ENV["GOODGAME_CLIENT_ID"], ENV["GOODGAME_CLIENT_SECRET"]
 end
 ```
 
